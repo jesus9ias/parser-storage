@@ -10,12 +10,12 @@ class parserStorage {
   }
 
   set(key, data) {
-    window.localStorage.setItem(key, data);
+    window.localStorage.setItem(key, this._text(data));
     return true;
   }
 
   get(key) {
-    return window.localStorage.getItem(key) || null;
+    return this._json(window.localStorage.getItem(key)) || null;
   }
 
   remove(key) {
