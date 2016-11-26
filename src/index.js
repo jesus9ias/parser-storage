@@ -11,14 +11,20 @@ class parserStorage {
 
   set(key, data) {
     window.localStorage.setItem(key, data);
+    return true;
   }
 
   get(key) {
-    return window.localStorage.getItem(key);
+    return window.localStorage.getItem(key) || null;
   }
 
   remove(key) {
-    window.localStorage.removeItem(key);
+    if (this.get(key) === null) {
+      return false;
+    } else {
+      window.localStorage.removeItem(key);
+      return true;
+    }
   }
 
 }
