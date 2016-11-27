@@ -18,10 +18,22 @@ class parserStorage {
     const element = this.get(key);
     let newElement = null;
     if (typeof element === 'string') {
-      newElement = [element, item];
+      if (data === null) {
+        newElement = [element, item];
+      } else {
+        newElement = {0: element, [item]: data};
+      }
     }
     if (element instanceof Array) {
-      newElement = [...element, item];
+      if (data === null) {
+        newElement = [...element, item];
+      } else {
+        newElement = {};
+        element.forEach((elem, index) => {
+          newElement[index] = elem;
+        });
+        newElement[item] = data;
+      }
     }
     if (element instanceof Object && !(element instanceof Array)) {
       element[item] = data;
