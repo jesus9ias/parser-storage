@@ -55,6 +55,22 @@ class parserStorage {
     }
   }
 
+  removeItem(key = false, item = null) {
+    let element = this.get(key);
+    if (element === null) {
+      return false;
+    } else {
+      let removed = false;
+      if (element instanceof Array) {
+        element.splice(item, 1);
+      }
+      if (element instanceof Object && !(element instanceof Array)) {
+        delete element[item];
+      }
+      return this.set(key, element);
+    }
+  }
+
 }
 
 export default new parserStorage();
