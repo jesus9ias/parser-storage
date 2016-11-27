@@ -55,6 +55,19 @@ class parserStorage {
     }
   }
 
+  updateItem(key = false, item = null, data = null) {
+    let element = this.get(key);
+    if (element === null) {
+      return false;
+    } else {
+      let removed = false;
+      if (element instanceof Object) {
+        element[item] = data;
+      }
+      return this.set(key, element);
+    }
+  }
+
   removeItem(key = false, item = null) {
     let element = this.get(key);
     if (element === null) {
