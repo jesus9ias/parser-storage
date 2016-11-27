@@ -9,16 +9,32 @@ class parserStorage {
     return JSON.stringify(json);
   }
 
-  set(key, data) {
+  set(key = false, data = "") {
     window.localStorage.setItem(key, this._text(data));
     return true;
   }
 
-  get(key) {
+  push(key = false, item = null, data = null) {
+    const element = this.get(key);
+    let newElement = null;
+    if (typeof element === 'string') {
+      newElement = [element, item];
+    }
+    if (element instanceof Array) {
+      newElement = [...element, item];
+    }
+    if (element instanceof Object && !(element instanceof Array)) {
+      element[item] = data;
+      newElement = element;
+    }
+    return this.set(key, newElement);
+  }
+
+  get(key = false) {
     return this._json(window.localStorage.getItem(key)) || null;
   }
 
-  remove(key) {
+  remove(key = false) {
     if (this.get(key) === null) {
       return false;
     } else {
