@@ -9,12 +9,15 @@ class parserStorage {
     return JSON.stringify(json);
   }
 
-  set(key = false, data = "") {
-    window.localStorage.setItem(key, this._text(data));
-    return true;
+  set(key = null, data = "") {
+    if (key !== null) {
+      window.localStorage.setItem(key, this._text(data));
+      return true;
+    }
+    return false;
   }
 
-  push(key = false, item = null, data = null) {
+  push(key = null, item = null, data = null) {
     const element = this.get(key);
     let newElement = null;
     if (typeof element === 'string') {
@@ -42,11 +45,11 @@ class parserStorage {
     return this.set(key, newElement);
   }
 
-  get(key = false) {
+  get(key = null) {
     return this._json(window.localStorage.getItem(key)) || null;
   }
 
-  remove(key = false) {
+  remove(key = null) {
     if (this.get(key) === null) {
       return false;
     } else {
@@ -55,12 +58,11 @@ class parserStorage {
     }
   }
 
-  updateItem(key = false, item = null, data = null) {
+  updateItem(key = null, item = null, data = null) {
     let element = this.get(key);
     if (element === null) {
       return false;
     } else {
-      let removed = false;
       if (element instanceof Object) {
         element[item] = data;
       }
@@ -68,12 +70,11 @@ class parserStorage {
     }
   }
 
-  removeItem(key = false, item = null) {
+  removeItem(key = null, item = null) {
     let element = this.get(key);
     if (element === null) {
       return false;
     } else {
-      let removed = false;
       if (element instanceof Array) {
         element.splice(item, 1);
       }
