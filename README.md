@@ -21,7 +21,7 @@ On your code:
 import parserStorage from 'parser-storage';
 ```
 
-You don need to use ES6 syntax but by the moment your project should be compiled with browserify or similar to get parser-storage working, thats good for React for example.
+You don not need to use ES6 syntax to import the library but if you want to use directly on your webpage, you can link the index.js file from the dist folder (after compiled or installed by npm).
 
 ## Operations
 

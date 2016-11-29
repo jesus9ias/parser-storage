@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>Example 1</title>
+  </head>
+  <body>
+    <p>hello!</p>
+    <script type="text/javascript" src="../dist/index.js"></script>
+    <script type="text/javascript">
+      parserStorage.set('text', 'hi!');
+      parserStorage.set('num', 456);
+      parserStorage.set('array', [1, 2 ,3]);
+      parserStorage.set('object', {num: 10, text: 'This is an object'});
+      parserStorage.push('array', 4);
+      parserStorage.push('object', 'array', ['a', 'b', 'c']);
+      parserStorage.remove('text');
+      parserStorage.removeItem('array', 1);
+      parserStorage.updateItem('object', 'num', 12);
+    </script>
+  </body>
+</html>

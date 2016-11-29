@@ -87,4 +87,10 @@ class parserStorage {
 
 }
 
-export default new parserStorage();
+let ps = new parserStorage();
+
+if (window) {
+  window.parserStorage = ps;
+}
+
+export default ps;
